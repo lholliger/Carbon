@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+body {
+  background-color: lightgray;
+}
+
+
+canvas {
+  border: 1px solid black;
+  box-shadow: 10px 10px 5px #888888;
+
+}

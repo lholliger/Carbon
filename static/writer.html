@@ -1,0 +1,65 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="external/carbon.css">
+</head>
+<body>
+  <center>
+<canvas id='writer'></canvas>
+</center>
+</body>
+<script>
+
+
+var mouseDown = false;
+document.body.onmousedown = function() {
+  mouseDown = true;
+}
+document.body.onmouseup = function() {
+  mouseDown = false;
+  lx = 0;
+  ly = 0;
+}
+
+
+var canvas = document.getElementById("writer");
+canvas.height  = 1150;
+canvas.width = 863;
+
+var ctx = canvas.getContext("2d");
+
+ctx.beginPath();
+ctx.rect(0, 0, 900, 1150);
+ctx.fillStyle = "white";
+ctx.fill();
+
+
+
+
+function getMousePos(canvas, evt) {
+  var rect = canvas.getBoundingClientRect();
+  return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+  };
+}
+ctx.fillStyle = "black";
+var lx, ly;
+ctx.fillStyle = "black";
+
+canvas.addEventListener('mousemove', function(evt) {
+  var mousePos = getMousePos(canvas, evt);
+  if (mouseDown) {
+    ctx.beginPath();
+    if (lx == 0 && ly == 0) {
+      ctx.moveTo(mousePos.x, mousePos.y);
+
+    } else {
+    ctx.moveTo(lx, ly);
+  }
+    ctx.lineTo(mousePos.x, mousePos.y);
+    ctx.stroke();
+  lx = mousePos.x;
+  ly = mousePos.y;
+}
+
+}, false);
+</script>
