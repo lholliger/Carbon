@@ -44,6 +44,7 @@ app.post('/save', function(req, res) {
         logger.write(data);
 
         logger.end() // close string
+        console.log("file saved to " + "/data/papers/" + name);
 });
 
 var port = 8080;
