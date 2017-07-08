@@ -1,5 +1,9 @@
 <head>
   <link rel="stylesheet" type="text/css" href="external/carbon.css">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
 </head>
 <body>
   <center>
@@ -27,12 +31,27 @@ canvas.width = 863;
 var ctx = canvas.getContext("2d");
 
 ctx.beginPath();
-ctx.rect(0, 0, 900, 1150);
+ctx.rect(0, 0, 900, 1200);
 ctx.fillStyle = "white";
 ctx.fill();
 
 
+ctx.fillStyle = "blue";
 
+for (i = 0; i < 35; i++) {
+  ctx.beginPath();
+
+  ctx.rect(0, i * 29 + 129, 900, 1);
+
+  ctx.fill();
+
+}
+
+
+ctx.beginPath();
+ctx.fillStyle = "red";
+ctx.rect(140, 0, 1, 2000);
+ctx.fill();
 
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
@@ -62,4 +81,8 @@ canvas.addEventListener('mousemove', function(evt) {
 }
 
 }, false);
+
+$(document).bind('touchmove', function(e) {
+    e.preventDefault();
+});
 </script>
