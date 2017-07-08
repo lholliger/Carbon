@@ -1,0 +1,27 @@
+{
+  "name": "carbon",
+  "version": "0.1.0",
+  "description": "Replacement for paper",
+  "main": "carbon.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "fs": "^0.0.1-security",
+    "mkdirp": "^0.5.1",
+    "json": "^9.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DatOneLefty/Carbon.git"
+  },
+  "author": "DatOneLefty",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DatOneLefty/Carbon/issues"
+  },
+  "homepage": "https://github.com/DatOneLefty/Carbon#readme"
+}

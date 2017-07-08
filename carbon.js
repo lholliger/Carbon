@@ -11,10 +11,12 @@ mkdirp('data/notebooks');
 mkdirp('data/textbooks');
 mkdirp('data/papers');
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/static/writer.html');
+  res.sendFile(__dirname + '/static/index.html');
 });
 
-
+app.get('/write', function(req, res){
+  res.sendFile(__dirname + '/static/writer.html');
+});
 app.use('/external/', express.static(__dirname + "/static/"));
 
 
@@ -45,6 +47,16 @@ app.post('/save', function(req, res) {
 
         logger.end() // close string
         console.log("file saved to " + "/data/papers/" + name);
+});
+
+app.use('/sheet/', express.static(__dirname + "/data/papers/"));
+
+app.get('/sheetlist', function(req, res){
+var list = []
+fs.readdirSync(__dirname + "/data/papers").forEach(file => {
+  list.push(file);
+})
+res.send(list);
 });
 
 var port = 8080;

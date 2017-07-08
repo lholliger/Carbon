@@ -8,6 +8,11 @@ function post(route, dataString)
 
   });
 }
+function get(name){
+   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+      return decodeURIComponent(name[1]);
+}
+
 
 var mouseDown = false;
 document.body.onmousedown = function() {
@@ -58,7 +63,49 @@ ctx.fillStyle = "red";
 ctx.rect(140, 0, 1, 2000);
 ctx.fill();
 }
+
+
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+
+function restore() {
+  var myCanvas = document.getElementById('writer');
+var ctx = myCanvas.getContext('2d');
+var img = new Image;
+img.onload = function(){
+  ctx.drawImage(img,0,0); // Or at whatever offset you like
+};
+img.src = httpGet("/sheet/" + name);
+}
+
+
+
+
 redraw();
+
+var ftype = get("type");
+if (ftype == "textbook") {
+  var pagenumber = get("pagenumber");
+}
+if (ftype == "notebook") {
+  var pagenumber = get("pagenumber");
+}
+if (ftype == "paper") {
+  var name = get("filename");
+
+  if (get("new") == "true") {} else {
+  restore();
+}
+}
+
+
+
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
   return {
@@ -127,6 +174,7 @@ canvas.addEventListener('touchend', function(e) {
 
 function save() {
   var dataURL = canvas.toDataURL();
-  post('/save/', {name: 'file.cpf', data: dataURL});
-
+  if (ftype == "paper") {
+  post('/save/', {name: name, data: dataURL, type: ftype});
+}
 }

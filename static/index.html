@@ -1,0 +1,29 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="external/carbon.css">
+  <title>Carbon Home</title>
+  <script src='external/home.js'></script>
+</head>
+<body>
+  <h1>Papers:</h1>
+  <div id='papers'></div>
+</body>
+
+<script>
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+var papers = JSON.parse(httpGet("/sheetlist"));
+
+papers.forEach(function(element) {
+    document.getElementById("papers").innerHTML += "<a href='/write/?type=paper&filename=" + element + "'><img width='216' height='287' src='" + httpGet("/sheet/" + element) + "'></a>";
+});
+
+document.getElementById("papers").innerHTML += "<img width='216' height='287' src='/external/img/new.png' onclick='newFile()'>";
+
+
+</script>

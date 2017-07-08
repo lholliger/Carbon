@@ -16,7 +16,11 @@ canvas {
 
 }
 
-
+img {
+  border: 1px solid black;
+  box-shadow: 10px 10px 5px #888888;
+  margin: 10px;
+}
 
 body {
     /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
@@ -26,4 +30,9 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+
+#papers {
+  margin: 2%;
 }
