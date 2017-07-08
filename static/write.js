@@ -163,7 +163,7 @@ canvas.addEventListener('touchmove', function(e) {
   var rect = canvas.getBoundingClientRect();
 
   var touchobj = e.changedTouches[0];
-
+if (touchobj.clientX - rect.left > 870 || touchobj.clientX - rect.left < 0 || touchobj.clientY - rect.top < 0 || touchobj.clientY - rect.top > 1160) {} else {
   if (startx == 0 && starty == 0) {
     ctx.moveTo(touchobj.clientX - rect.left, touchobj.clientY - rect.top);
   } else {
@@ -173,7 +173,7 @@ canvas.addEventListener('touchmove', function(e) {
   startx = touchobj.clientX - rect.left;
   starty = touchobj.clientYß - rect.top;
   ctx.stroke();
-
+}
 
   e.preventDefault()
 }, false)
