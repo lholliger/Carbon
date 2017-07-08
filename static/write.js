@@ -81,7 +81,16 @@ var img = new Image;
 img.onload = function(){
   ctx.drawImage(img,0,0); // Or at whatever offset you like
 };
+if (ftype == "paper") {
 img.src = httpGet("/sheet/" + name);
+}
+if (ftype == "notebook") {
+  var nbs = httpGet("/noteread/?pagenumber=" + pagenumber + "&notebook=" + bookname);
+if (nbs == "NON") {} else {
+  img.src = nbs;
+
+}
+}
 }
 
 
@@ -91,10 +100,14 @@ redraw();
 
 var ftype = get("type");
 if (ftype == "textbook") {
-  var pagenumber = get("pagenumber");
+    var pagenumber = get("pagenumber");
 }
 if (ftype == "notebook") {
+  var bookname = get("bookname");
   var pagenumber = get("pagenumber");
+  if (get("new") == "true") {} else {
+  restore();
+}
 }
 if (ftype == "paper") {
   var name = get("filename");
@@ -171,10 +184,29 @@ canvas.addEventListener('touchend', function(e) {
   starty = 0;
 }, false)
 
-
+var dataURL;
 function save() {
-  var dataURL = canvas.toDataURL();
+  dataURL = canvas.toDataURL();
   if (ftype == "paper") {
-  post('/save/', {name: name, data: dataURL, type: ftype});
+  post('/save/', {name: "/papers/" + name, data: dataURL, type: ftype});
 }
+if (ftype == "notebook") {
+  post('/save/', {name: "/notebooks/" + bookname + "/" + pagenumber + ".cnp", data: dataURL, type: ftype});
+
+}
+}
+
+function gotomenu() {
+  save();
+  window.location.href = "/";
+}
+
+function print() {
+w=window.open();
+w.document.write("<script></script><img src='"+ canvas.toDataURL() + "'>");
+setTimeout(function() {
+  w.print();
+  w.close();
+}, 500);
+
 }

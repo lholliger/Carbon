@@ -16,8 +16,13 @@ canvas {
 
 }
 
-img {
+.paper {
   border: 1px solid black;
+  box-shadow: 10px 10px 5px #888888;
+  margin: 10px;
+}
+
+.notebook {
   box-shadow: 10px 10px 5px #888888;
   margin: 10px;
 }
@@ -35,4 +40,14 @@ body {
 
 #papers {
   margin: 2%;
+}
+
+#notebooks {
+  margin: 2%;
+}
+
+
+button {
+  border: none;
+  background: none;
 }

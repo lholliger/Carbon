@@ -39,7 +39,7 @@ app.post('/save', function(req, res) {
     var name = req.body.name,
         data = req.body.data;
 
-        var logger = fs.createWriteStream(__dirname + "/data/papers/" + name, {
+        var logger = fs.createWriteStream(__dirname + "/data/" + name, {
           flags: 'w'
         })
 
@@ -49,11 +49,43 @@ app.post('/save', function(req, res) {
         console.log("file saved to " + "/data/papers/" + name);
 });
 
+app.get('/noteread', function(req, res) {
+    var name = req.query.pagenumber,
+    nbm = req.query.notebook;
+        fs.readFile(__dirname + "/data/notebooks/" + nbm + "/" + name + ".cnp", "utf-8", function (err,data) {
+  if (err) {
+    res.send("NON");
+
+  }
+  res.send(data);
+
+});
+
+        console.log("notebook page read from book " + nbm +  " at page " + name);
+});
+
+app.get('/createnotebook', function(req, res) {
+    var name  = req.query.name;
+
+    mkdirp('data/notebooks/' + name);
+
+        console.log("new notebook by the name of " + name);
+});
+
+
 app.use('/sheet/', express.static(__dirname + "/data/papers/"));
 
 app.get('/sheetlist', function(req, res){
 var list = []
 fs.readdirSync(__dirname + "/data/papers").forEach(file => {
+  list.push(file);
+})
+res.send(list);
+});
+
+app.get('/notebooklist', function(req, res){
+var list = []
+fs.readdirSync(__dirname + "/data/notebooks").forEach(file => {
   list.push(file);
 })
 res.send(list);

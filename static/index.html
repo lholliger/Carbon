@@ -4,8 +4,16 @@
   <script src='external/home.js'></script>
 </head>
 <body>
+
+  <div>
+    <img style="vertical-align:middle" src='/external/img/carbon.png' width='50' height='50'>
+    <span style=""><b>Carbon Beta v 0.1.0</b></span>
+  </div>
   <h1>Papers:</h1>
   <div id='papers'></div>
+  <h1>Notebooks:</h1>
+  <div id='notebooks'></div>
+
 </body>
 
 <script>
@@ -20,10 +28,20 @@ function httpGet(theUrl)
 var papers = JSON.parse(httpGet("/sheetlist"));
 
 papers.forEach(function(element) {
-    document.getElementById("papers").innerHTML += "<a href='/write/?type=paper&filename=" + element + "'><img width='216' height='287' src='" + httpGet("/sheet/" + element) + "'></a>";
+    document.getElementById("papers").innerHTML += "<a href='/write/?type=paper&filename=" + element + "'><img class='paper' width='216' height='287' src='" + httpGet("/sheet/" + element) + "'></a>";
 });
 
-document.getElementById("papers").innerHTML += "<img width='216' height='287' src='/external/img/new.png' onclick='newFile()'>";
+document.getElementById("papers").innerHTML += "<img class='paper' width='216' height='287' src='/external/img/new.png' onclick='newFile()'>";
+
+
+var papers = JSON.parse(httpGet("/notebooklist"));
+
+papers.forEach(function(element) {
+    document.getElementById("notebooks").innerHTML += "<a href='/write/?type=notebook&pagenumber=1&bookname=" + element + "'><img class='notebook' width='216' height='287' src='/external/img/notebook.png'></a>";
+});
+
+document.getElementById("notebooks").innerHTML += "<img class='paper' width='216' height='287' src='/external/img/new.png' onclick='newNotebook()'>";
+
 
 
 </script>
