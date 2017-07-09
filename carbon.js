@@ -5,7 +5,9 @@ var http = require('http').Server(app);
 var mkdirp = require('mkdirp');
 var express = require("express");
 var bodyParser = require('body-parser')
-
+process.on('uncaughtException', function (err) {
+  console.log('Caught exception: ' + err);
+});
 mkdirp('data');
 mkdirp('data/notebooks');
 mkdirp('data/textbooks');

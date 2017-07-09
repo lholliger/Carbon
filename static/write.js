@@ -105,6 +105,13 @@ if (ftype == "textbook") {
 if (ftype == "notebook") {
   var bookname = get("bookname");
   var pagenumber = get("pagenumber");
+  if (pagenumber < 2) {
+    document.getElementById("xb").innerHTML = "<a onclick='save()' href='/write/?type=notebook&pagenumber=" + (parseInt(pagenumber) + 1) + "&bookname=" + bookname  +"'><button class='up'>></button></a>"
+
+  } else {
+document.getElementById("xb").innerHTML = "<a onclick='save()' href='/write/?type=notebook&pagenumber=" + (parseInt(pagenumber) - 1) + "&bookname=" + bookname  +"'><button class='down'><</button></a>  <a onclick='save()' href='/write/?type=notebook&pagenumber=" + (parseInt(pagenumber) + 1) + "&bookname=" + bookname  +"'><button class='up'>></button></a>"
+}
+
   if (get("new") == "true") {} else {
   restore();
 }
