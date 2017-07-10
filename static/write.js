@@ -45,7 +45,7 @@ ctx.rect(0, 0, 900, 1200);
 ctx.fillStyle = "white";
 ctx.fill();
 
-
+if (get("papertype") == "blank") {} else {
 ctx.fillStyle = "blue";
 
 for (i = 0; i < 35; i++) {
@@ -64,7 +64,7 @@ ctx.rect(140, 0, 1, 2000);
 ctx.fill();
 }
 
-
+}
 function httpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
