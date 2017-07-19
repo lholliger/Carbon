@@ -132,7 +132,7 @@ function getMousePos(canvas, evt) {
     x: evt.clientX - rect.left,
     y: evt.clientY - rect.top
   };
-
+}
 var lx, ly;
 
 
