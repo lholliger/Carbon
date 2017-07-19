@@ -54,7 +54,6 @@ for (i = 0; i < 35; i++) {
   ctx.rect(0, i * 29 + 129, 900, 1);
 
   ctx.fill();
-ctx.fillStyle = "black";
 }
 
 
@@ -63,6 +62,7 @@ ctx.fillStyle = "red";
 ctx.rect(140, 0, 1, 2000);
 ctx.fill();
 }
+ctx.fillStyle = "black";
 
 }
 function httpGet(theUrl)
@@ -97,6 +97,8 @@ if (nbs == "NON") {} else {
 
 
 redraw();
+ctx.fillStyle = "black";
+
 
 var ftype = get("type");
 if (ftype == "textbook") {
