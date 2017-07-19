@@ -54,7 +54,7 @@ for (i = 0; i < 35; i++) {
   ctx.rect(0, i * 29 + 129, 900, 1);
 
   ctx.fill();
-
+ctx.fillStyle = "black";
 }
 
 
@@ -132,10 +132,9 @@ function getMousePos(canvas, evt) {
     x: evt.clientX - rect.left,
     y: evt.clientY - rect.top
   };
-}
-ctx.fillStyle = "black";
+
 var lx, ly;
-ctx.fillStyle = "black";
+
 
 canvas.addEventListener('mousemove', function(evt) {
   var mousePos = getMousePos(canvas, evt);
